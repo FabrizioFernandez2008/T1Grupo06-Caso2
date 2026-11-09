@@ -1,3 +1,6 @@
+// Se utiliza input para recibir datos del componente padre,
+// Se utiliza output para enviar eventos al componente padre 
+// Se utiliza signal para gestionar datos reactivos.
 import { Component, input, output, signal } from '@angular/core';
 
 @Component({
@@ -28,12 +31,16 @@ export class NuevoMovimiento {
   protected validarMonto(): void {
     const valor = this.monto();
 
+    //En esta parte se realizan la comprobaciones del monto igresado por el usuario.
+    //Que sea un número, que no sea negativo, que no tenga mas de 2 decimales.
     if (valor.trim() === '') {
       this.error.set('');
     } else if (!/^\d+(\.\d{1,2})?$/.test(valor)) {
       this.error.set('Ingrese únicamente números y hasta dos decimales.');
     } else if (Number(valor) <= 0) {
       this.error.set('El monto debe ser mayor que cero.');
+    //Aqui se valida que el monto ingresado en caso de ser gasto, no pueda ser mayor que el saldo 
+    // disponible. Caso contrario indica un error
     } else if (
       this.tipoMovimiento() === 'Gasto' &&
       Number(valor) > this.saldoActual()

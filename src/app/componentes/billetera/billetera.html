@@ -11,8 +11,8 @@
         <div class="p-4 rounded-3 mb-4" style="background-color: #EFF6FF;">
           <p class="text-secondary mb-2">Saldo disponible</p>
           <h2 class="fw-bold mb-0" style="color: #2563EB;">
-            <!--En esta interpolación "| number:'1.2-2'" se encarga que angular convierta el formato
-            a números y solo muestre decimales. -->
+            <!--En esta interpolación "| number:'1.2-2'" se encarga de dar formato al saldo actual para
+            que solo muestre 2 decimales. -->
             S/. {{ saldo() | number:'1.2-2' }}
           </h2>
         </div>

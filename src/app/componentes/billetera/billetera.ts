@@ -1,4 +1,6 @@
+// Se utiliza signal para guardar y actualizar datos reactivos.
 import { Component, signal } from '@angular/core';
+// Se utiliza DecimalPipe para mostrar los números con formato decimal.
 import { DecimalPipe } from '@angular/common';
 import { NuevoMovimiento } from '../nuevo-movimiento/nuevo-movimiento';
 

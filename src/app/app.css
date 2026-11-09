@@ -1,3 +1,5 @@
+/* Se importa la fuente Poppins desde Google Fonts para poder usarla en los textos.*/
+/*Solo por estética*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap');
 
 :host {
