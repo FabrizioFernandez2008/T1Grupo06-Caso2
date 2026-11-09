@@ -1,0 +1,65 @@
+<div class="row g-4">
+  <div class="col-12 col-lg-6">
+    <div class="card border-0 shadow-sm rounded-4 h-100">
+      <div class="card-header py-3 px-4 border-0"
+           style="background-color: #1E3A5F;">
+        <h4 class="text-white fw-semibold mb-0">Billetera</h4>
+      </div>
+
+      <div class="card-body p-4">
+
+        <div class="p-4 rounded-3 mb-4" style="background-color: #EFF6FF;">
+          <p class="text-secondary mb-2">Saldo disponible</p>
+          <h2 class="fw-bold mb-0" style="color: #2563EB;">
+            <!--En esta interpolación "| number:'1.2-2'" se encarga que angular convierta el formato
+            a números y solo muestre decimales. -->
+            S/. {{ saldo() | number:'1.2-2' }}
+          </h2>
+        </div>
+
+        <h5 class="fw-semibold mb-3">Movimientos</h5>
+
+        @if (movimientos().length === 0) {
+          <div class="alert alert-info text-center mb-0">
+            Aún no hay movimientos registrados.
+          </div>
+        } @else {
+          <div class="d-flex flex-column gap-2">
+          @for (movimiento of movimientos(); track $index) {
+            <div
+              class="rounded-3 p-3 d-flex justify-content-between align-items-center"
+              [class.bg-success-subtle]="movimiento.tipo === 'Recarga'"
+              [class.bg-danger-subtle]="movimiento.tipo === 'Gasto'"
+            >
+              <span
+                class="fw-semibold"
+                [class.text-success-emphasis]="movimiento.tipo === 'Recarga'"
+                [class.text-danger-emphasis]="movimiento.tipo === 'Gasto'"
+              >
+                {{ movimiento.tipo }}
+              </span>
+
+              <span
+                class="fw-semibold"
+                [class.text-success-emphasis]="movimiento.tipo === 'Recarga'"
+                [class.text-danger-emphasis]="movimiento.tipo === 'Gasto'"
+              >
+                {{ movimiento.tipo === 'Recarga' ? '+' : '-' }}
+                S/. {{ movimiento.monto | number:'1.2-2' }}
+              </span>
+            </div>
+          }
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-6">
+    <app-nuevo-movimiento
+      [saldoActual]="saldo()"
+      (movimientoSolicitado)="registrarMovimiento($event)">
+    </app-nuevo-movimiento>
+
+  </div>
+</div>

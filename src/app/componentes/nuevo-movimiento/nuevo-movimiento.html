@@ -1,0 +1,54 @@
+<div class="card border-0 shadow-sm rounded-4 h-100">
+  <div class="card-header py-3 px-4 border-0"
+       style="background-color: #1E3A5F;">
+    <h4 class="text-white fw-semibold mb-0">Nuevo Movimiento</h4>
+  </div>
+
+  <div class="card-body p-4">
+
+    <div class="mb-4">
+      <label class="form-label fw-semibold">Tipo de movimiento</label>
+      <select
+        class="form-select"
+        [value]="tipoMovimiento()"
+        (change)="tipoMovimiento.set($any($event.target).value); validarMonto()"
+      >
+        <option value="">Seleccionar tipo</option>
+        <option value="Recarga">Recarga</option>
+        <option value="Gasto">Gasto</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Monto</label>
+
+      <div class="input-group">
+        <span class="input-group-text">S/.</span>
+
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Ingrese el monto"
+          inputmode="decimal"
+          [value]="monto()"
+          (input)="actualizarMonto($event)"
+        >
+      </div>
+
+      @if (error()) {
+        <div class="text-danger small mt-2">
+          {{ error() }}
+        </div>
+      }
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-primary w-100 mt-3"
+      [disabled]="formularioInvalido"
+      (click)="registrarMovimiento()">
+      Registrar movimiento
+    </button>
+
+  </div>
+</div>

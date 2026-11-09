@@ -1,0 +1,18 @@
+.card {
+  min-height: 100%;
+}
+
+.card-body {
+  color: #1E293B;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #2563EB;
+  box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.15);
+}
+
+.btn-primary:disabled {
+  background-color: #94A3B8;
+  border-color: #94A3B8;
+}
