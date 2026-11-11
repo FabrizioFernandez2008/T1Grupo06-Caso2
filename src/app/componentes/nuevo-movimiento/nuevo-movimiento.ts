@@ -39,13 +39,6 @@ export class NuevoMovimiento {
       this.error.set('Ingrese únicamente números y hasta dos decimales.');
     } else if (Number(valor) <= 0) {
       this.error.set('El monto debe ser mayor que cero.');
-    //Aqui se valida que el monto ingresado en caso de ser gasto, no pueda ser mayor que el saldo 
-    // disponible. Caso contrario indica un error
-    } else if (
-      this.tipoMovimiento() === 'Gasto' &&
-      Number(valor) > this.saldoActual()
-    ) {
-      this.error.set('No cuenta con saldo suficiente.');
     } else {
       this.error.set('');
     }
@@ -63,6 +56,14 @@ export class NuevoMovimiento {
 
     protected registrarMovimiento(): void {
     if (this.formularioInvalido) {
+      return;
+    }
+
+    if (
+      this.tipoMovimiento() === 'Gasto' &&
+      Number(this.monto()) > this.saldoActual()
+    ) {
+      this.error.set('No cuenta con saldo suficiente.');
       return;
     }
 
